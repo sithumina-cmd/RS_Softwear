@@ -12,6 +12,24 @@
       color: #222;
       line-height: 1.6;
     }
+    nav {
+      background: #0b0475;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
     header {
       background: #0b0475;
       color: #fff;
@@ -34,7 +52,7 @@
       max-width: 900px;
       margin: auto;
     }
-    .services, .contact, .more-services, .portfolio, .form-section {
+    .services, .contact, .more-services, .portfolio, .form-section, .testimonials {
       background: #fff;
       margin: 1rem 0;
       padding: 1.5rem;
@@ -63,13 +81,24 @@
       font-size: 1rem;
     }
     .form-section button {
-      background: #0b0475;
+      background: #25D366;
       color: #fff;
       border: none;
       cursor: pointer;
+      font-weight: bold;
     }
     .form-section button:hover {
-      background: #1509b0;
+      background: #1da851;
+    }
+    .testimonial-item {
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #0b0475;
+      padding-left: 1rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-weight: bold;
+      margin-top: 0.5rem;
     }
     footer {
       background: #0b0475;
@@ -81,19 +110,27 @@
   </style>
 </head>
 <body>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#more-services">More Services</a>
+    <a href="#portfolio">Projects</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
   <header>
     <img src="DBlue white.jpg" alt="RS Solutions Logo">
-    <h1>RS Softwear</h1>
-    <p> Software Development Company</p>
+    <h1>RS Solutions</h1>
+    <p>Small Software Development Business</p>
     <a href="https://wa.me/94786856627" target="_blank" style="display:inline-block;background:#25D366;color:#fff;padding:0.6rem 1rem;margin-top:1rem;border-radius:6px;text-decoration:none;font-weight:bold;">Chat on WhatsApp</a>
   </header>
 
-  <section class="services">
+  <section id="services" class="services">
     <h2>Our Services</h2>
     <p>We design and develop custom software solutions for small businesses. From inventory management systems to billing solutions, we help you simplify your workflow with reliable and user-friendly software.</p>
   </section>
 
-  <section class="more-services">
+  <section id="more-services" class="more-services">
     <h2>More Services</h2>
     <ul>
       <li>Inventory Management Systems</li>
@@ -103,12 +140,24 @@
     </ul>
   </section>
 
-  <section class="portfolio">
+  <section id="portfolio" class="portfolio">
     <h2>Our Projects</h2>
     <p>Here are some of the projects we have developed for our clients. (You can showcase screenshots or descriptions here.)</p>
   </section>
 
-  <section class="contact">
+  <section id="testimonials" class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-item">
+      <p>“RS Solutions built a custom billing system for our shop and it works perfectly. Very reliable team!”</p>
+      <div class="testimonial-author">– Nimal, Shop Owner</div>
+    </div>
+    <div class="testimonial-item">
+      <p>“Great software solutions at affordable prices. Highly recommended.”</p>
+      <div class="testimonial-author">– Kavindu, Businessman</div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
     <h2>Contact Us</h2>
     <p>Stay connected with RS Solutions through the following platforms:</p>
     <a href="https://wa.me/94786856627" target="_blank">WhatsApp: 0786856627</a>
@@ -118,16 +167,31 @@
 
   <section class="form-section">
     <h2>Get in Touch</h2>
-    <form>
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
+    <form onsubmit="sendToWhatsApp(); return false;">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send to WhatsApp</button>
     </form>
   </section>
 
   <footer>
     <p>&copy; 2025 RS Solutions. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    function sendToWhatsApp() {
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let message = document.getElementById("message").value;
+
+      let url = "https://wa.me/94786856627?text=" 
+          + "Name: " + encodeURIComponent(name) + "%0a"
+          + "Email: " + encodeURIComponent(email) + "%0a"
+          + "Message: " + encodeURIComponent(message);
+
+      window.open(url, '_blank').focus();
+    }
+  </script>
 </body>
 </html>
